@@ -1,0 +1,127 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Assure que la page prend toute la hauteur de l'écran */
+}
+
+main {
+    flex: 1; /* Prend tout l'espace disponible entre la navbar et le footer */
+    padding: 20px;
+}
+
+/* Navbar Styles */
+.navbar {
+    position: sticky; /* Permet à la navbar de rester collée */
+    top: 0; /* La fixe en haut de la page */
+    z-index: 1000; /* La met au-dessus du contenu */
+    background-color: #333; /* Couleur de fond */
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Navbar Brand */
+.navbar-brand {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Navbar Links (UL) */
+ul {
+    list-style: none; /* Supprime les puces par défaut */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacement entre les éléments */
+}
+
+ul li {
+    margin: 0;
+    padding: 0;
+}
+
+ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s; /* Transition pour les interactions */
+}
+
+ul li a:hover {
+    background-color: transparent; /* Pas de fond gris au clic */
+    color: #f0f0f0; /* Une couleur légèrement plus claire au survol */
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.language-icon {
+    width: 24px; /* Largeur uniforme */
+    height: auto;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 1000;
+    min-width: 150px;
+    text-align: left;
+}
+
+.dropdown-menu a {
+    display: flex; /* Aligne les icônes et le texte horizontalement */
+    align-items: center;
+    padding: 8px 10px;
+    font-size: 14px;
+    color: black; /* Texte noir pour le menu déroulant */
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0; /* Fond clair au survol */
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #333; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    text-align: center;
+    padding: 10px 20px;
+}

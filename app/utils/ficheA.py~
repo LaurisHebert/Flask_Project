@@ -1,0 +1,35 @@
+# Flask_project/app/utils/ficheA.py
+import os
+from app.utils.pdf_manager import generate_pdf
+
+
+def create_fiche_A(data):
+    """
+    Create a PDF for Fiche A based on a text template and provided data.
+    Créer un PDF pour la fiche A en utilisant un modèle texte et les données fournies.
+
+    Args:
+        data: A dictionary containing the necessary data for Fiche A.
+        Un dictionnaire contenant les données nécessaires pour la fiche A.
+
+    Returns:
+        The path to the generated PDF file.
+        Le chemin du fichier PDF généré.
+    """
+    # Path to the text template
+    template_path = './templates/fiche_A.txt'
+
+    # Read the template file
+    with open(template_path, 'r', encoding='utf-8') as template_file:
+        template_content = template_file.read()
+
+    # Replace placeholders with actual data
+    filled_content = template_content.format(**data)
+
+    # Generate the PDF from the filled content
+    output_folder = './pdfs'
+    os.makedirs(output_folder, exist_ok=True)  # Create the output folder if it doesn't exist
+    output_file = os.path.join(output_folder, f"fiche_A_{data.get('id', 'unknown')}.pdf")
+    generate_pdf({"content": filled_content}, output_file)
+
+    return output_file

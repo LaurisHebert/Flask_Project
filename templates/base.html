@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="{{ session.get('lang', 'en') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My App{% endblock %}</title>
+    <link rel="stylesheet" href="/static/main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand">{{ get_translation('app_name') }}</a>
+            <ul>
+                <li><a href="/upload">{{ get_translation('new_pdf') }}</a></li>
+            </ul>
+            <ul class="navbar-menu">
+                <li class="dropdown">
+                    <button class="dropdown-toggle">
+                        <img src="/static/images/{{ session.get('lang', 'en') }}.png" alt="Language" class="language-icon">
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="/change-lang/en">
+                            <img src="/static/images/en.png" alt="English" class="language-icon"> English
+                        </a>
+                        <a href="/change-lang/fr">
+                            <img src="/static/images/fr.png" alt="Français" class="language-icon"> Français
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>{{ get_translation('footer_text') }}</p>
+    </footer>
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault(); // Empêche la navigation par défaut
+
+                const lang = link.getAttribute('href').split('/').pop(); // Extrait la langue
+                fetch(`/change-lang/${lang}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message); // Pop-up confirmant le changement
+                        location.reload(); // Recharge la page pour appliquer la nouvelle langue
+                    } else {
+                        alert('Error changing language');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    });
+</script>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Upload File{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ get_translation('heading') }}</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="file">{{ get_translation('choose_file') }}</label>
+            <input type="file" id="file" name="file" required>
+        </div>
+        <button type="submit" class="btn">{{ get_translation('upload_button') }}</button>
+    </form>
+</div>
+{% endblock %}
+
